@@ -8,10 +8,16 @@
 module.exports = {
   all: function (req, res) {
     Post.find()
+      .sort('createdAt desc')
       .exec(function (err, data) {
-        return res.render('post/all', { posts: data });
+        return res.view('post/all', { posts: data });
       });
-//    return res.send("Hi there!");
+  },
+  add: function (req, res) {
+    Post.create(req.body)
+      .exec( function (err, data) {
+        return res.redirect('/post/'+ data.url);
+      })
   }
 };
 

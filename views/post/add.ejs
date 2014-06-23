@@ -1,1 +1,17 @@
-<form action="/post/add"></form>
+<section class="ui form segment">
+  <form action="/post/create" method="POST">
+    <div class="field">
+      <label>Title</label>
+      <input id="title" name="title" type="text"/>
+    </div>
+    <div class="field">
+      <label>Author</label>
+      <input name="author" type="text"/>
+    </div>
+    <div class="field">
+      <label>Post body</label>
+      <textarea name="body" cols="30" rows="10"></textarea>
+    </div>
+    <input type="submit" class="ui blue submit button"/>
+  </form>
+</section>

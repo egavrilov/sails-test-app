@@ -28,15 +28,20 @@ module.exports.routes = {
   //
   // (Alternatively, remove this and add an `index.html` file in your `assets` directory)
 
-  '/': 'PostController.all',
+  'GET /': 'PostController.all',
 
   '/about': {
     view: 'homepage'
-  }
+  },
 
 
   // Custom routes here...
 
+  'GET /post/add': {
+    view: 'post/add'
+  },
+  'POST /post/add': 'PostController.add',
+  'GET /post/all': 'PostController.all'
 
   // If a request to a URL doesn't match any of the custom routes above,
   // it is matched against Sails route blueprints.  See `config/blueprints.js`
