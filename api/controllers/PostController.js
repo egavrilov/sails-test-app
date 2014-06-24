@@ -10,14 +10,44 @@ module.exports = {
     Post.find()
       .sort('createdAt desc')
       .exec(function (err, data) {
+        if (err) {
+          return res.badRequest(err);
+        }
         return res.view('post/all', { posts: data });
       });
   },
   add: function (req, res) {
     Post.create(req.body)
-      .exec( function (err, data) {
-        return res.redirect('/post/'+ data.url);
+      .exec( function (err, post) {
+        console.log(post);
+        if (err) {
+          return res.serverError(err);
+        }
+        return res.redirect('/post/' + post.url);
       })
+  },
+
+  edit: function (req, res) {
+    Post.findOne({
+      url: req.param('cleanUrl')
+    }, function (err, post) {
+      if ( err || !post ) {
+        return res.notFound(err||'No such post');
+      }
+      return res.view('post/edit', {post: post});
+    })
+  },
+
+  single: function (req, res){
+    Post.findOne({
+      url: req.param('cleanUrl')
+    }, function (err, post) {
+      if (err || !post) {
+        return res.notFound(err||'No such post');
+      }
+      console.log(post);
+      return res.view('post/single', {post: post});
+    })
   }
 };
 
