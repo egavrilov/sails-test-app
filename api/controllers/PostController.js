@@ -34,8 +34,24 @@ module.exports = {
       if ( err || !post ) {
         return res.notFound(err||'No such post');
       }
+      console.log(post);
       return res.view('post/edit', {post: post});
     })
+  },
+
+  update: function (req, res) {
+    Post.update(
+      req.body.id,
+      req.body,
+      function (err, post) {
+        if (err || !post[0]) {
+          return res.serverError(err||'No such post');
+        }
+        post = post[0];
+
+        return res.redirect('/post/' + post.url);
+      }
+    )
   },
 
   single: function (req, res){

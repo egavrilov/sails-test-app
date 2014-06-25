@@ -45,7 +45,7 @@ module.exports.routes = {
   'GET /post/:cleanUrl': 'PostController.single',
 
   'GET /post/:cleanUrl/edit': 'PostController.edit',
-  'POST /post/:cleanUrl/edit': 'PostController.update'
+  'POST /post/edit': 'PostController.update'
 
   // If a request to a URL doesn't match any of the custom routes above,
   // it is matched against Sails route blueprints.  See `config/blueprints.js`
