@@ -41,7 +41,8 @@ module.exports.routes = {
     view: 'post/add'
   },
   'POST /post/add': 'PostController.add',
-  'GET /post/all': 'PostController.all',
+  'GET /posts': 'PostController.list',
+  'GET /posts/:page': 'PostController.list',
   'GET /post/:cleanUrl': 'PostController.single',
 
   'GET /post/:cleanUrl/edit': 'PostController.edit',

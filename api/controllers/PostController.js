@@ -4,16 +4,22 @@
  * @description :: Server-side logic for managing posts
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
+var POSTS_PER_PAGE = 10;
 
 module.exports = {
-  all: function (req, res) {
-    Post.find()
-      .sort('createdAt desc')
+  list: function (req, res) {
+    var posts = Post.find(),
+        offset = (req.param('page') || 1) - 1;
+
+    posts.skip(offset * POSTS_PER_PAGE);
+
+    posts.sort('createdAt desc')
       .exec(function (err, data) {
         if (err) {
           return res.badRequest(err);
         }
-        return res.view('post/all', { posts: data });
+//      return res.json({posts:data});
+      return res.view('post/list', { posts: data });
       });
   },
   add: function (req, res) {
