@@ -28,7 +28,7 @@ module.exports.routes = {
   //
   // (Alternatively, remove this and add an `index.html` file in your `assets` directory)
 
-  'GET /': 'PostController.all',
+  'GET /': 'PostController.list',
 
   '/about': {
     view: 'homepage'

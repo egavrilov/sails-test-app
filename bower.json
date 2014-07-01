@@ -1,0 +1,7 @@
+{
+  "name": "Huncoder",
+  "version": "0.0.1",
+  "dependencies": {
+    "semantic" : "~0.18.0"
+  }
+}
